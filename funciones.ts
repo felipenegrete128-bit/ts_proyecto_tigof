@@ -35,44 +35,29 @@ function esPlacaNuestra(placa:string, placas:Placa[]):boolean {
             return(true)
         }
     })
+    /* return(p.placa == placa ? true : false)//Se usa este if ternario en casos de una sola condición */
     return(false)
 }
 
-/* #Obtener rango de acuerdo a la distancia de la mina
-def definir_rango(mina:dict)->str:
-    "Devuelve el rango correspondiente a cada mina."
-    "Parámetro: mina (Diccionario de la mina de cada registro)"
-    "Retorno: Se extrae el rango de la mina de cada registro"
-    rangos_minas = [
-    {"min": 0, "max": 3, "nombre": "0 a 3"},
-    {"min": 3.1, "max": 8, "nombre": "3,1 a 8"},
-    {"min": 8.1, "max": 20, "nombre": "8,1 a 20"}
-]
-    distancia = mina['Distancia']# 1. Extrae la distancia del diccionario
-    for rango in rangos_minas:# 2. Recorre RANGOS_MINAS    
-        if rango['min'] <= distancia <= rango['max']:# 3. Compara si la distancia está dentro de cada rango (min y max)
-            return rango['nombre']# 4. Cuando encuentres coincidencia, retorna el "nombre" del rango
-    return None # 5. Si no encuentra nada 
-
-    #Obtener tarifa
-def obtener_tarifa(rango:str, tipo_vehiculo:str, ano:str, tarifas:list)->int:
-    "Devuelve la tarifa luego de validar el rango y el tipo de vehiculo"
-    "Parámetros: rango(rango de cada mina del registro), tipo_vehiculo(tipo de vehiculo de cada placa), ano(año al que aplica la tarifa consultada) y tarifas(Lista de tarifas, cada tarifa es un diccionario)"
-    "Retorno: Se extrae la tarifa correspondinete"
-    for t in tarifas:
-        if t['Ano'] == ano:
-            if t['Rango'] == rango and t['Tipo Vehiculo'] == tipo_vehiculo:
-                return t['Tarifa']
-    return 0*/
-
-function definirRango(mina:Mina):string{
-
+function definirRango(mina:Mina):Rango{
+if(mina.distancia > 0 && mina.distancia <= 3){
+    return("0 a 3")
+}
+else if(mina.distancia > 3 && mina.distancia <= 8){
+    return("3,1 a 8")
+}
+else{
+    return("8,1 a 20")
+}
 }
 
 function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{
-
-}
-
-function name(params:type) {
-    
+tarifas.forEach(t => {
+    if(t.anio == anio){
+        if(t.rango == rango && t.tipoVehiculo == tipoVehiculo){
+            return(t.tarifa)
+        }
+    }
+})
+return(0)
 }
