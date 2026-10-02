@@ -24,11 +24,11 @@ type Tarifa={
     anio:string;
 }
 
-function calcularPesoNeto(pesoEntrada:number, pesoSalida:number):number {
+export function calcularPesoNeto(pesoEntrada:number, pesoSalida:number):number {
     return((pesoEntrada - pesoSalida)/1000);
 }
 
-function esPlacaNuestra(placa:string, placas:Placa[]):boolean {
+export function esPlacaNuestra(placa:string, placas:Placa[]):boolean {
     placa = placa.replaceAll(' ','');
     placas.forEach(p => {
         if(p.placa == placa){
@@ -39,7 +39,7 @@ function esPlacaNuestra(placa:string, placas:Placa[]):boolean {
     return(false)
 }
 
-function definirRango(mina:Mina):Rango{
+export function definirRango(mina:Mina):Rango{
 if(mina.distancia > 0 && mina.distancia <= 3){
     return("0 a 3")
 }
@@ -51,7 +51,7 @@ else{
 }
 }
 
-function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{
+export function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{
 tarifas.forEach(t => {
     if(t.anio == anio){
         if(t.rango == rango && t.tipoVehiculo == tipoVehiculo){
@@ -62,30 +62,7 @@ tarifas.forEach(t => {
 return(0)
 }
 
-/* 
-#Encontrar mina
-def encontrar_mina(mina:str, minas:list)->dict:#A partir del nombre que viene del df, comparar con la lista de minas que tengo y debe devolver el diccionario que ya tengo
-    "Valida la existencia de cada mina en el registro de báscula respecto a nuestra lista de minas"
-    "Parámetros: mina (proviene del registro de báscula) y minas(nuestra lista de minas, donde cada mina es un diccionario)"
-    "Retorno: Diccionario de cada mina."
-    alias_minas = {
-        "PM-44-1 UPM EL MANZANILLO FINO MEDIO TENOR": "El Manzanillo",
-        "ASM-2026-005-TP-GOLDEN BEAK-2.3<=Au<8.0 g/t":"Golden Beak",
-        "ASM-2026-0015-TP-MINERALCO TERMINAL-8.0≤Au<15.0 g/tn":"Mineralco",
-        "PM-117-1 OUTSOURCING EXPLOTACIONES GOLD CARLA":"Explotaciones Gold Carla",
-        "ASM-2026-018 TP LA PALMICHALA 8.0≤Au<15.0 g/t":"La Palmichala",
-        "PM-00-1 OUTSOURCING SK 3-7":"Sk 3-7"
-    }
-    if mina in alias_minas:
-        mina = alias_minas[mina]
-    elif mina[:2] == 'PP':
-        mina = mina[3:]
-    for m in minas:
-        if m['Mina'].strip() == mina.title():#strip elimina espacios vacios adelante y detrás
-            return m
-    return None */
-
-function obtenerVehiculo(placa:string, placas:Placa[]):Placa{
+export function obtenerVehiculo(placa:string, placas:Placa[]):Placa{
     placa = placa.replaceAll(' ','');
     placas.forEach(p => {
         if(p.placa == placa){
@@ -96,11 +73,11 @@ function obtenerVehiculo(placa:string, placas:Placa[]):Placa{
 }
 
 // Función auxiliar para simular el .title() de Python
-function toTitleCase(texto: string): string {
+export function toTitleCase(texto: string): string {
   return texto.toLowerCase().replace(/(?:^|\s)\w/g, (letra) => letra.toUpperCase());//Se pasa todo el texto a minúsculas(toLowerCase)y luego la primera en mayúscula (toUpperCase), /(?:^|\s)\w/g => se llama regex
 }
 
-function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca que la función devuelva un objeto de tipo Mina
+export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca que la función devuelva un objeto de tipo Mina
     const aliasMinas: Record<string, string> = {//Esta es la forma en TS de tipar un objeto donde claves y valores sean textos, const seria una variable constante.
         "PM-44-1 UPM EL MANZANILLO FINO MEDIO TENOR": "El Manzanillo",
         "ASM-2026-005-TP-GOLDEN BEAK-2.3<=Au<8.0 g/t":"Golden Beak",
@@ -124,6 +101,6 @@ function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca que la f
   return({mina: "",tipoMaterial: "",grupo: "",distancia: 0,pertenencia: ""});//Si el bucle termina y no encuentra coincidencia, se ejecuta esta linea
 }
 
-function obtenerFacturacion(tarifa:number, pesoNeto:number):number{
+export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{
     return(tarifa * pesoNeto)
 }
