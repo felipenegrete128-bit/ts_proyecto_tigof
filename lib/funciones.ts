@@ -25,21 +25,20 @@ type Tarifa={
 }
 
 export function calcularPesoNeto(pesoEntrada:number, pesoSalida:number):number {
-    return((pesoEntrada - pesoSalida)/1000);
+    return((pesoEntrada - pesoSalida)/1000); /*Calcular el peso neto de las toneladas transportadas*/
 }
 
-export function esPlacaNuestra(placa:string, placas:Placa[]):boolean {
+export function esPlacaNuestra(placa:string, placas:Placa[]):boolean { /*Validar si cada placa en el registro de bascula es nuestra flota, este seria nuestro primer filtro de informacion*/
     placa = placa.replaceAll(' ','');
     placas.forEach(p => {
         if(p.placa == placa){
             return(true)
         }
     })
-    /* return(p.placa == placa ? true : false)//Se usa este if ternario en casos de una sola condición */
     return(false)
 }
 
-export function definirRango(mina:Mina):Rango{
+export function definirRango(mina:Mina):Rango{ /*Define el rango correspondiente a cada mina de acuerdo a su distancia en km*/
 if(mina.distancia > 0 && mina.distancia <= 3){
     return("0 a 3")
 }
@@ -51,7 +50,7 @@ else{
 }
 }
 
-export function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{
+export function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{ /*Define la tarifa de acuerdo al rango y al tipo de vehiculo*/
 tarifas.forEach(t => {
     if(t.anio == anio){
         if(t.rango == rango && t.tipoVehiculo == tipoVehiculo){
@@ -62,7 +61,7 @@ tarifas.forEach(t => {
 return(0)
 }
 
-export function obtenerVehiculo(placa:string, placas:Placa[]):Placa{
+export function obtenerVehiculo(placa:string, placas:Placa[]):Placa{/*Extrae la información completa de cada placa*/
     placa = placa.replaceAll(' ','');
     placas.forEach(p => {
         if(p.placa == placa){
@@ -72,12 +71,12 @@ export function obtenerVehiculo(placa:string, placas:Placa[]):Placa{
     return({placa:"",propiedad:"", capacidad:0, tipoVehiculo:"Doble troque"})//Se crea una especie de diccionario vacio para llenar los datos que no cumplen nuestra condicón if, se aplica para Mina
 }
 
-// Función auxiliar para simular el .title() de Python
-export function toTitleCase(texto: string): string {
+
+export function toTitleCase(texto: string): string {/*Transforma el texto en formato titulo con mayusculas iniciales*/
   return texto.toLowerCase().replace(/(?:^|\s)\w/g, (letra) => letra.toUpperCase());//Se pasa todo el texto a minúsculas(toLowerCase)y luego la primera en mayúscula (toUpperCase), /(?:^|\s)\w/g => se llama regex
 }
 
-export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca que la función devuelva un objeto de tipo Mina
+export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca que la función devuelva un objeto de tipo Mina definido previamente
     const aliasMinas: Record<string, string> = {//Esta es la forma en TS de tipar un objeto donde claves y valores sean textos, const seria una variable constante.
         "PM-44-1 UPM EL MANZANILLO FINO MEDIO TENOR": "El Manzanillo",
         "ASM-2026-005-TP-GOLDEN BEAK-2.3<=Au<8.0 g/t":"Golden Beak",
@@ -101,6 +100,6 @@ export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca q
   return({mina: "",tipoMaterial: "",grupo: "",distancia: 0,pertenencia: ""});//Si el bucle termina y no encuentra coincidencia, se ejecuta esta linea
 }
 
-export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{
+export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{ /*Calcula la facturación de cada registro multiplicando la tarifa por el peso neto*/
     return(tarifa * pesoNeto)
 }
