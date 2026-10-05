@@ -5,7 +5,7 @@ type Placa={
     tipoVehiculo:TipoVehiculo;
 }
 
-type Mina={
+export type Mina={
     mina:string;
     tipoMaterial:string;
     grupo:string;
