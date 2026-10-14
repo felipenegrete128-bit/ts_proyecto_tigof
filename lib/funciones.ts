@@ -103,3 +103,28 @@ export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca q
 export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{ /*Calcula la facturación de cada registro multiplicando la tarifa por el peso neto*/
     return(tarifa * pesoNeto)
 }
+
+// Mapa de equivalencias para nombres extensos del reporte de báscula
+const MAPA_EXCEPCIONES_MINAS: Record<string, string> = {
+  "PM-44-1 UPM EL MANZANILLO FINO MEDIO TENOR": "El Manzanillo",
+  "ASM-2026-005-TP-GOLDEN BEAK-2.3<=Au<8.0 g/t": "Golden Beak",
+  "ASM-2026-0015-TP-MINERALCO TERMINAL-8.0≤Au<15.0 g/tn": "Mineralco",
+  "PM-117-1 OUTSOURCING EXPLOTACIONES GOLD CARLA": "Explotaciones Gold Carla",
+  "ASM-2026-018 TP LA PALMICHALA 8.0≤Au<15.0 g/t": "La Palmichala",
+  "PM-00-1 OUTSOURCING SK 3-7": "Sk 3-7"
+};
+
+/**
+ * Valida y encuentra la mina correspondiente en la base de datos.
+ */
+export function encontrarMina(minaReporte: string, minas: Mina[]): Mina | undefined {
+  if (!minaReporte) return undefined;
+
+  // 1. Traducir si existe una regla de excepción
+  const nombreNormalizado = MAPA_EXCEPCIONES_MINAS[minaReporte] || minaReporte;
+
+  // 2. Comparar el nombre traducido con la lista oficial (insensible a mayúsculas/espacios)
+  return minas.find(
+    (m) => m.mina.trim().toLowerCase() === nombreNormalizado.trim().toLowerCase()
+  );
+}
