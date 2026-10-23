@@ -7,49 +7,14 @@ import { useState } from "react";/* hook: Conecta la interactividad con html */
 import {definirRango, encontrarMina} from "@/lib/funciones"
 import { Mina } from "@/lib/funciones";
 import * as XLSX from 'xlsx'
+import { minas } from "@/lib/colecciones";
 
 export default function Home() {
  /*  const [nombre, setNombre] = useState<string>("Albana") */
  /* || equivale a or y && equivale a and */
   const [resultado, setResultado] = useState<Mina | null>(null);/*Siempre se debe declara como constante (const), el estado siempre tiene dos valores, uno que almacena y otro que modifica*/
   /* setNombre('Felipe') */
-  const minas: Mina[] = [
-  {
-    mina: "El Manzanillo",
-    tipoMaterial: "Mineral",
-    grupo: "OME",
-    distancia: 3.8,
-    pertenencia: "Segovia"
-  },
-  {
-    mina: "El Zapatillo",
-    tipoMaterial: "Mineral",
-    grupo: "OME",
-    distancia: 5.2,
-    pertenencia: "Remedios"
-  },
-  {
-    mina: "Esperanza Gold",
-    tipoMaterial: "Mineral",
-    grupo: "OME",
-    distancia: 4.5,
-    pertenencia: "Segovia"
-  },
-  {
-    mina: "Explominerales",
-    tipoMaterial: "Mineral",
-    grupo: "OME",
-    distancia: 17.4,
-    pertenencia: "Remedios"
-  },
-  {
-    mina: "Explotaciones Gold",
-    tipoMaterial: "Mineral",
-    grupo: "OME",
-    distancia: 8.1,
-    pertenencia: "Segovia"
-  }
-];
+
 let mina = encontrarMina("El Zapatillo",minas)
 let rango = definirRango(mina)
 const [filas, setFilas] = useState<any[]>([])
