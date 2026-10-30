@@ -1,7 +1,8 @@
-Rango;Tipo Vehiculo;Tarifa;Ano
-0 a 3;Doble_troque;11297;2026
-3,1 a 8;Doble_troque;13205;2026
-8,1 a 20;Doble_troque;22361;2026
-0 a 3;Sencilla;40946;2026
-3,1 a 8;Sencilla;55188;2026
-8,1 a 20;Sencilla;55188;2026
+Rango;Tipo Vehiculo;Tarifa;Ano;Tipo
+0 a 3;Doble_troque;11297;2026;Superficie
+3,1 a 8;Doble_troque;13205;2026;Superficie
+8,1 a 20;Doble_troque;22361;2026;Superficie
+0 a 3;Sencilla;40946;2026;Superficie
+3,1 a 8;Sencilla;55188;2026;Superficie
+8,1 a 20;Sencilla;55188;2026;Superficie
+8,1 a 20;Doble_troque;25420;2026;Socavón

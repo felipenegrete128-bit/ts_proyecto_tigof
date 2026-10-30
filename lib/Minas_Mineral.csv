@@ -1,80 +1,84 @@
-Mina;Tipo Material;Grupo;Distancia ;Pertenencia
-El Manzanillo;Mineral;OME;3,8;Segovia
-El Zapatillo;Mineral;OME;5,2;Remedios
-Esperanza Gold;Mineral;OME;4,5;Segovia
-Explominerales;Mineral;OME;17,4;Remedios
-Explotaciones Gold;Mineral;OME;8,1;Segovia
-Fenix Gold;Mineral;OME;11,8;Remedios
-Golden Beak;Mineral;OME;8,2;Segovia
-Inversiones Extra;Mineral;OME;5;Remedios
-La 17;Mineral;OME;17,6;Remedios
-La Fusion;Mineral;OME;8,3;Segovia
-Los Cristales Sociedad Minera S.A.S;Mineral;OME;4;Segovia
-Mina Antioquia Gold;Mineral;OME;4,5;Remedios
-Mina Benavides;Mineral;OME;14,5;Remedios
-Mina El Bloque;Mineral;OME;5,4;Remedios
-Mina El Carambolo;Mineral;OME;4,5;Remedios
-Mina El Cobre;Mineral;OME;5,8;Remedios
-Mina Extragold;Mineral;OME;5;Remedios
-Mina Korea;Mineral;OME;8,3;Remedios
-Mina La Esmeralda;Mineral;OME;14,6;Remedios
-Mina La Gongurua;Mineral;OME;9,8;Remedios
-Mina La Guarida Selectivo;Mineral;OME;4,5;Remedios
-Mina La Paz;Mineral;OME;4,2;Segovia
-Mina La Playa;Mineral;OME;8;Remedios
-Mina La Prosperidad;Mineral;OME;9,1;Remedios
-Mina La Setenta Y Uno;Mineral;OME;4,5;Remedios
-Mina La Valencia;Mineral;OME;15;Remedios
-Mina Las Aves;Mineral;OME;5,4;Remedios
-Mina Los Acasios;Mineral;OME;13;Remedios
-Mina Los Guayabales;Mineral;OME;5,3;Remedios
-Mina Los Kikes ;Mineral;OME;4;Segovia
-Mina Luz Divina;Mineral;OME;4,5;Remedios
-Mina Manto Verde;Mineral;OME;2,4;Segovia
-Mina Monarca;Mineral;OME;2,8;Segovia
-Mina Noah;Mineral;OME;7,9;Remedios
-Mina Palma Bonita No.2;Mineral;OME;14,7;Remedios
-Mina Puerta De Sion;Mineral;OME;3,8;Segovia
-Mina Sah Gold;Mineral;OME;3,8;Segovia
-Mina San Rafael Gold ;Mineral;OME;15;Remedios
-Mina Sucre;Mineral;OME;14,5;Remedios
-Mina Torre Del Tanque;Mineral;OME;5,4;Remedios
-Mineral Carla     ;Mineral;AMS;11;NA
-Mineral El Silencio    ;Mineral;AMS;3;NA
-Mineral Marginal Carla    ;Mineral;AMS;11;NA
-Mineral Marginal El Silencio   ;Mineral;AMS;3;NA
-Mineral Marginal Providencia    ;Mineral;AMS;14;NA
-Mineral Marginal Providencia Rc   ;Mineral;AMS;4,9;Segovia
-Mineral Marginal Sandra K   ;Mineral;AMS;18;NA
-Mineral Providencia     ;Mineral;AMS;14;NA
-Mineral Providencia Rc    ;Mineral;AMS;4,9;NA
-Mineral Sandra K    ;Mineral;AMS;18;NA
-Mineral Sandra K Rc   ;Mineral;AMS;5,6;NA
-Outsourcing Beta     ;Mineral;OME;3;Segovia
-Explotaciones Gold Carla;Mineral;OME;11;Remedios
-Outsourcing Masora     ;Mineral;OME;14;Remedios
-Outsourcing Navar     ;Mineral;OME;3;Segovia
-Sk 3-7;Mineral;OME;18;Remedios
-Outsourcing Sk 3-7 Alianza Miner  ;Mineral;OME;4,3;Segovia
-Sk 3-7 Rc;Mineral;OME;5,6;Remedios
-Santa Barbara;Mineral;OME;5;Remedios
-Sociedad Minera El Minon;Mineral;OME;12;Remedios
-Standard Gold San German;Mineral;OME;13,5;Remedios
-Explominerales Medio Tenor   ;Mineral;OME;17,4;Remedios
-Future Gold;Mineral;OME;5,2;Remedios
-La Abundancia;Mineral;OME;5;Remedios
-La Bombita;Mineral;OME;3;Segovia
-La Cuenca;Mineral;OME;5,5;Remedios
-La Gina;Mineral;OME;5;Remedios
-La Guarida;Mineral;OME;4,5;Remedios
-La Reliquia;Mineral;OME;1,8;Segovia
-La Verdolaga;Mineral;OME;4,5;Remedios
-Los Naranjos;Mineral;OME;14,5;Remedios
-Oma;Mineral;OME;18,6;Remedios
-Oro Manantial;Mineral;OME;5,4;Remedios
-Plata Gold;Mineral;OME;18,4;Remedios
-Puente Tierra;Mineral;OME;5,1;Segovia
-San Fenix Gold;Mineral;OME;11,8;Remedios
-Tres Y Media;Mineral;OME;5;Remedios
-Mineralco;Mineral;OME;1;Segovia
-La Palmichala;Mineral;OME;5;Remedios
+Mina;Tipo Material;Grupo;Distancia ;Pertenencia;Tipo
+El Manzanillo;Mineral;OME;3,8;Segovia;Superficie
+El Zapatillo;Mineral;OME;5,2;Remedios;Superficie
+Esperanza Gold;Mineral;OME;4,5;Segovia;Superficie
+Explominerales;Mineral;OME;17,4;Remedios;Superficie
+Explotaciones Gold;Mineral;OME;8,1;Segovia;Superficie
+Fenix Gold;Mineral;OME;11,8;Remedios;Superficie
+Golden Beak;Mineral;OME;8,2;Segovia;Superficie
+Inversiones Extra;Mineral;OME;5;Remedios;Superficie
+La 17;Mineral;OME;17,6;Remedios;Superficie
+La Fusion;Mineral;OME;8,3;Segovia;Superficie
+Los Cristales Sociedad Minera S.A.S;Mineral;OME;4;Segovia;Superficie
+Mina Antioquia Gold;Mineral;OME;4,5;Remedios;Superficie
+Mina Benavides;Mineral;OME;14,5;Remedios;Superficie
+Mina El Bloque;Mineral;OME;5,4;Remedios;Superficie
+Mina El Carambolo;Mineral;OME;4,5;Remedios;Superficie
+Mina El Cobre;Mineral;OME;5,8;Remedios;Superficie
+Mina Extragold;Mineral;OME;5;Remedios;Superficie
+Mina Korea;Mineral;OME;8,3;Remedios;Superficie
+Mina La Esmeralda;Mineral;OME;14,6;Remedios;Superficie
+Mina La Gongurua;Mineral;OME;9,8;Remedios;Superficie
+Mina La Guarida Selectivo;Mineral;OME;4,5;Remedios;Superficie
+Mina La Paz;Mineral;OME;4,2;Segovia;Superficie
+Mina La Playa;Mineral;OME;8;Remedios;Superficie
+Mina La Prosperidad;Mineral;OME;9,1;Remedios;Superficie
+Mina La Setenta Y Uno;Mineral;OME;4,5;Remedios;Superficie
+Mina La Valencia;Mineral;OME;15;Remedios;Superficie
+Mina Las Aves;Mineral;OME;5,4;Remedios;Superficie
+Mina Los Acasios;Mineral;OME;13;Remedios;Superficie
+Mina Los Guayabales;Mineral;OME;5,3;Remedios;Superficie
+Mina Los Kikes ;Mineral;OME;4;Segovia;Superficie
+Mina Luz Divina;Mineral;OME;4,5;Remedios;Superficie
+Mina Manto Verde;Mineral;OME;2,4;Segovia;Superficie
+Mina Monarca;Mineral;OME;2,8;Segovia;Superficie
+Mina Noah;Mineral;OME;7,9;Remedios;Superficie
+Mina Palma Bonita No.2;Mineral;OME;14,7;Remedios;Superficie
+Mina Puerta De Sion;Mineral;OME;3,8;Segovia;Superficie
+Mina Sah Gold;Mineral;OME;3,8;Segovia;Superficie
+Mina San Rafael Gold ;Mineral;OME;15;Remedios;Superficie
+Mina Sucre;Mineral;OME;14,5;Remedios;Superficie
+Mina Torre Del Tanque;Mineral;OME;5,4;Remedios;Superficie
+Mineral Carla     ;Mineral;AMS;11;NA;Superficie
+Mineral El Silencio    ;Mineral;AMS;3;NA;Superficie
+Mineral Marginal Carla    ;Mineral;AMS;11;NA;Superficie
+Mineral Marginal El Silencio   ;Mineral;AMS;3;NA;Superficie
+Mineral Marginal Providencia    ;Mineral;AMS;14;NA;Superficie
+Mineral Marginal Providencia Rc   ;Mineral;AMS;4,9;Segovia;Superficie
+Mineral Marginal Sandra K   ;Mineral;AMS;18;NA;Superficie
+Mineral Providencia     ;Mineral;AMS;14;NA;Superficie
+Mineral Providencia Rc    ;Mineral;AMS;4,9;NA;Superficie
+Mineral Sandra K    ;Mineral;AMS;18;NA;Superficie
+Mineral Sandra K Rc   ;Mineral;AMS;5,6;NA;Superficie
+Outsourcing Beta     ;Mineral;OME;3;Segovia;Superficie
+Explotaciones Gold Carla;Mineral;OME;11;Remedios;Superficie
+Outsourcing Masora     ;Mineral;OME;14;Remedios;Superficie
+Outsourcing Navar     ;Mineral;OME;3;Segovia;Superficie
+Sk 3-7;Mineral;OME;18;Remedios;Superficie
+Outsourcing Sk 3-7 Alianza Miner  ;Mineral;OME;4,3;Segovia;Superficie
+Sk 3-7 Rc;Mineral;OME;5,6;Remedios;Superficie
+Santa Barbara;Mineral;OME;5;Remedios;Superficie
+Sociedad Minera El Minon;Mineral;OME;12;Remedios;Superficie
+Standard Gold San German;Mineral;OME;13,5;Remedios;Superficie
+Explominerales Medio Tenor   ;Mineral;OME;17,4;Remedios;Superficie
+Future Gold;Mineral;OME;5,2;Remedios;Superficie
+La Abundancia;Mineral;OME;5;Remedios;Superficie
+La Bombita;Mineral;OME;3;Segovia;Superficie
+La Cuenca;Mineral;OME;5,5;Remedios;Superficie
+La Gina;Mineral;OME;5;Remedios;Superficie
+La Guarida;Mineral;OME;4,5;Remedios;Superficie
+La Reliquia;Mineral;OME;1,8;Segovia;Superficie
+La Verdolaga;Mineral;OME;4,5;Remedios;Superficie
+Los Naranjos;Mineral;OME;14,5;Remedios;Superficie
+Oma;Mineral;OME;18,6;Remedios;Superficie
+Oro Manantial;Mineral;OME;5,4;Remedios;Superficie
+Plata Gold;Mineral;OME;18,4;Remedios;Superficie
+Puente Tierra;Mineral;OME;5,1;Segovia;Superficie
+San Fenix Gold;Mineral;OME;11,8;Remedios;Superficie
+Tres Y Media;Mineral;OME;5;Remedios;Superficie
+Mineralco;Mineral;OME;1;Segovia;Superficie
+La Palmichala;Mineral;OME;5;Remedios;Superficie
+Mineral Providencia - Socavón;Mineral;AMS;14;NA;Socavón
+Mineral Providencia Rc - Socavón;Mineral;AMS;4,9;NA;Socavón
+Mineral Sandra K - Socavón;Mineral;AMS;18;NA;Socavón
+Mineral Sandra K Rc - Socavón;Mineral;AMS;5,6;NA;Socavón

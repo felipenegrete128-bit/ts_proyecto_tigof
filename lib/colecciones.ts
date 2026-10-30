@@ -1,12 +1,5 @@
 import * as fs from 'fs';/* El * en un import hace referencia a importar toda la biblioteca. */
-
-export type Mina = {
-  mina: string;
-  tipoMaterial: string;
-  grupo: string;
-  distancia: number;
-  pertenencia: string;
-};
+import {Placa, Mina, Tarifa, TipoMina, TipoVehiculo, Rango} from "./tipos";
 
 /**
  * Lee un archivo CSV local y mapea sus registros a una lista de objetos tipo Mina.
@@ -51,7 +44,7 @@ export function cargarMinasDesdeCSV(
       return valor.replace(/^("|')(.*)\1$/, '$2').trim();
     });
 
-    const [mina = '', tipoMaterial = '', grupo = '', distanciaStr = '0', pertenencia = ''] = columnas;
+    const [mina = '', tipoMaterial = '', grupo = '', distanciaStr = '0', pertenencia = '', tipo = ''] = columnas;
 
     // Mina.distancia es number; convertir la coma decimal a punto antes de parsear.
     const distancia = Number.parseFloat(distanciaStr.replace(',', '.'));
@@ -61,7 +54,8 @@ export function cargarMinasDesdeCSV(
       tipoMaterial,
       grupo,
       distancia: Number.isNaN(distancia) ? 0 : distancia,
-      pertenencia
+      pertenencia,
+      tipo: "Superficie"
     };
   });
 }
@@ -69,17 +63,7 @@ export function cargarMinasDesdeCSV(
 
 export let minas = cargarMinasDesdeCSV('lib/Minas_Mineral.csv')
 
-/* Función cargarMinasDesdeCSV */
-
-// 1. Definición estricta de TipoVehiculo y Placa
-export type TipoVehiculo = "Doble troque" | "Sencilla";
-
-export type Placa = {
-  placa: string;
-  propiedad: string;
-  capacidad: number;
-  tipoVehiculo: TipoVehiculo;
-};
+/* Función cargarPlacasDesdeCSV */
 
 /**
  * Objeto por defecto cuando no se encuentra la placa.
@@ -96,7 +80,7 @@ const PLACA_VACIA: Placa = {
  * Normaliza y valida que el texto del CSV sea un TipoVehiculo válido.
  */
 function parseTipoVehiculo(valor: string): TipoVehiculo {
-  const v = valor.trim().toLowerCase();
+  const v = valor.trim().toLowerCase().replace(/_/g, " ");
   if (v === "doble troque" || v === "dobletroque") {
     return "Doble troque";
   }
@@ -105,6 +89,21 @@ function parseTipoVehiculo(valor: string): TipoVehiculo {
   }
   // Valor de respaldo (fallback) por defecto
   return "Sencilla";
+}
+
+/**
+ * Normaliza y valida que el texto del CSV sea un TipoMina válido.
+ */
+function parseTipoMina(valor: string): TipoMina {
+  const v = valor.trim().toLowerCase().replace(/_/g, " ");
+  if (v === "superficie") {
+    return "Superficie";
+  }
+  if (v === "socavón" || v === "socavon") {
+    return "Socavón";
+  }
+  // Valor de respaldo (fallback) por defecto
+  return "Superficie";
 }
 
 /**
@@ -175,4 +174,78 @@ export function cargarPlacaDesdeCSV(
   });
 }
 
-/* Función tarifa */
+/* FUNCIÓN TARIFA */
+/**
+ * Normaliza y valida que el valor del CSV coincida con las opciones válidas de Rango.
+ */
+function parseRango(valor: string): Rango {
+  const v = valor.trim().toLowerCase().replace('.', ',');
+
+  if (v.includes('0') && v.includes('3')) return "0 a 3";
+  if (v.includes('3') && v.includes('8')) return "3,1 a 8";
+  if (v.includes('8') && v.includes('20')) return "8,1 a 20";
+
+  // Valor por defecto en caso de un dato mal formateado
+  return "0 a 3";
+}
+
+/**
+ * Lee un archivo CSV local y mapea sus registros a una lista de objetos tipo Tarifa. * 
+ * @param rutaArchivo - Ruta relativa o absoluta del archivo CSV (por defecto 'Tarifas_M&E.csv').
+ * @param delimitador - Carácter separador de columnas (por defecto ',').
+ * @param tieneEncabezado - Indica si la primera fila contiene los nombres de las columnas (por defecto true).
+ * @returns Lista de objetos tipo Tarifa.
+ */
+export function cargarTarifaDesdeCSV(
+  rutaArchivo: string = 'Tarifas_M&E.csv',
+  delimitador: string = ';',
+  tieneEncabezado: boolean = true
+): Tarifa[] {
+  // 1. Verificar la existencia del archivo
+  if (!fs.existsSync(rutaArchivo)) {
+    throw new Error(`El archivo CSV no fue encontrado en la ruta: ${rutaArchivo}`);
+  }
+
+  // 2. Leer el contenido en codificación UTF-8
+  const contenido = fs.readFileSync(rutaArchivo, 'utf-8');
+
+  // 3. Dividir el contenido por líneas y omitir líneas vacías
+  const lineas = contenido
+    .split(/\r?\n/)
+    .map((linea) => linea.trim())
+    .filter((linea) => linea.length > 0);
+
+  if (lineas.length === 0) {
+    return [];
+  }
+
+  // 4. Omitir la fila del encabezado si aplica
+  const filas = tieneEncabezado ? lineas.slice(1) : lineas;
+
+  // 5. Mapear cada fila al objeto Tarifa
+  return filas.map((linea) => {
+    const columnas = linea
+      .split(delimitador)
+      .map((col) => col.replace(/^["'](.*)["']$/, '$1').trim());
+
+    const [
+      rangoRaw = '',
+      tipoVehiculoRaw = '',
+      tarifaStr = '0',
+      anioRaw = '',
+      tipo = "Superficie"
+    ] = columnas;
+
+    // Convertir tarifa a número soportando miles y decimales con coma o punto
+    const tarifaLimpia = tarifaStr.replace(/\s/g, '').replace(',', '.');
+    const tarifa = parseFloat(tarifaLimpia);
+
+    return {
+      rango: parseRango(rangoRaw),
+      tipoVehiculo: parseTipoVehiculo(tipoVehiculoRaw),
+      tarifa: isNaN(tarifa) ? 0 : tarifa,
+      anio: anioRaw.trim(),
+      tipo : parseTipoMina(tipo)
+    };
+  });
+}

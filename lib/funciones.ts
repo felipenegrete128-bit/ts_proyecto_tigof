@@ -1,28 +1,4 @@
-type Placa={
-    placa:string;
-    propiedad:string;
-    capacidad:number;
-    tipoVehiculo:TipoVehiculo;
-}
-
-export type Mina={
-    mina:string;
-    tipoMaterial:string;
-    grupo:string;
-    distancia:number;
-    pertenencia:string;
-}
-
-type Rango = "0 a 3" | "3,1 a 8" | "8,1 a 20"
-
-type TipoVehiculo = "Doble troque" | "Sencilla"
-
-type Tarifa={
-    rango:Rango;
-    tipoVehiculo:TipoVehiculo;
-    tarifa:number;
-    anio:string;
-}
+import {Placa, Mina, Tarifa, TipoMina, TipoVehiculo, Rango} from "./tipos";
 
 export function calcularPesoNeto(pesoEntrada:number, pesoSalida:number):number {
     return((pesoEntrada - pesoSalida)/1000); /*Calcular el peso neto de las toneladas transportadas*/
@@ -45,24 +21,15 @@ else{
 }
 }
 
-export function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[]):number{ /*Define la tarifa de acuerdo al rango y al tipo de vehiculo*/
-tarifas.forEach(t => {
-    if(t.anio == anio){
-        if(t.rango == rango && t.tipoVehiculo == tipoVehiculo){
-            return(t.tarifa)
-        }
-    }
-})
-return(0)
+export function obtenerTarifa(rango:Rango, tipoVehiculo: TipoVehiculo, anio:string, tarifas:Tarifa[], tipo:TipoMina):number{ /*Define la tarifa de acuerdo al rango y al tipo de vehiculo*/
+const t = tarifas.find(t => t.anio == anio && t.rango == rango && t.tipoVehiculo == tipoVehiculo && t.tipo == tipo)
+return(t ? t.tarifa : 0)
 }
 
 export function obtenerVehiculo(placa:string, placas:Placa[]):Placa{/*Extrae la información completa de cada placa*/
-    placa = placa.replaceAll(' ','');
-    placas.forEach(p => {
-        if(p.placa == placa){
-            return(p)
-        }
-    })
+    const normalizada = placa.replaceAll(' ','').toUpperCase();
+    const encontrada = placas.find(p => p.placa.replaceAll(' ','').toUpperCase() == normalizada)
+    if(encontrada) return(encontrada)
     return({placa:"",propiedad:"", capacidad:0, tipoVehiculo:"Doble troque"})//Se crea una especie de diccionario vacio para llenar los datos que no cumplen nuestra condicón if, se aplica para Mina
 }
 
@@ -78,12 +45,14 @@ export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca q
         "ASM-2026-0015-TP-MINERALCO TERMINAL-8.0≤Au<15.0 g/tn":"Mineralco",
         "PM-117-1 OUTSOURCING EXPLOTACIONES GOLD CARLA":"Explotaciones Gold Carla",
         "ASM-2026-018 TP LA PALMICHALA 8.0≤Au<15.0 g/t":"La Palmichala",
-        "PM-00-1 OUTSOURCING SK 3-7":"Sk 3-7"
+        "PM-00-1 OUTSOURCING SK 3-7":"Sk 3-7",
+        "ASM-2026-016 EMP PROYECTO MATUNA BAJO TENOR" : "Matuna",
+        "EMP ASM-2025-010 MONTAROCA MEDIO TENOR" : "Montaroca"
     }
     if(mina in aliasMinas){
         mina = aliasMinas[mina];//Accede al valor mapeado
     }else if(mina.slice(0,2) == 'PP'){//Equivale a obtener los primeros 2 carácteres
-        mina = mina.slice(3)//Equivale a recortar el texto del índice 3 en adelante
+        mina = mina.slice(3).split(' - ')[0]//Equivale a recortar el texto del índice 3 en adelante y quitar sufijos como " - PORTAL 500"
     }
     const minaBuscada = toTitleCase(mina);
     for (const m of minas) {
@@ -92,9 +61,5 @@ export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca q
     }
   }
   // 3. Objeto por defecto completo según el tipo Mina
-  return({mina: "",tipoMaterial: "",grupo: "",distancia: 0,pertenencia: ""});//Si el bucle termina y no encuentra coincidencia, se ejecuta esta linea
-}
-
-export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{ /*Calcula la facturación de cada registro multiplicando la tarifa por el peso neto*/
-    return(tarifa * pesoNeto)
+  return({mina: "",tipoMaterial: "",grupo: "",distancia: 0,pertenencia: "",tipo: "Superficie"});//Si el bucle termina y no encuentra coincidencia, se ejecuta esta linea
 }
