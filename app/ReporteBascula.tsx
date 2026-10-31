@@ -11,7 +11,7 @@ import {
   obtenerTarifa,
   obtenerVehiculo,
 } from "@/lib/funciones";
-import type { Mina, Placa, Rango, Tarifa, TipoVehiculo } from "@/lib/colecciones";
+import type { Mina, Placa, Rango, Tarifa, TipoVehiculo } from "@/lib/tipos";
 
 type ReporteRow = Record<string, unknown>;
 
@@ -108,7 +108,7 @@ export function procesarFilas(
       placas
     );
     const sobrePesoTon = Math.max(0, pesoNeto - vehiculo.capacidad);
-    const tarifa = obtenerTarifa(rango, vehiculo.tipoVehiculo, anio, tarifas);
+    const tarifa = obtenerTarifa(rango, vehiculo.tipoVehiculo, anio, tarifas, mina.tipo);
     if (tarifa === 0) {
       revisar.push(fila);
       continue;
@@ -180,7 +180,8 @@ export function recalcularFila(
   if (campo !== "Tarifa" && campo !== "Facturacion") {
     const rango = mostrarValor(v.Rango) as Rango;
     const tipo = mostrarValor(v["Tipo Vehiculo"]) as TipoVehiculo;
-    const t = obtenerTarifa(rango, tipo, String(new Date().getFullYear()), tarifas);
+    const tipoMina = encontrarMina(mostrarValor(v.Item).trim(), minas).tipo;
+    const t = obtenerTarifa(rango, tipo, String(new Date().getFullYear()), tarifas, tipoMina);
     v.Tarifa = t ? formatoMoneda.format(t) : "";
   }
   if (campo !== "Facturacion") {
@@ -221,7 +222,8 @@ export function construirFilaManual(
           rango,
           vehiculo.tipoVehiculo,
           String(new Date().getFullYear()),
-          tarifas
+          tarifas,
+          mina.tipo
         )
       : 0;
   const sobrePesoTon =

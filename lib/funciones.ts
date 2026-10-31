@@ -63,3 +63,6 @@ export function encontrarMina(mina:string, minas:Mina[]):Mina{//Aquí se busca q
   // 3. Objeto por defecto completo según el tipo Mina
   return({mina: "",tipoMaterial: "",grupo: "",distancia: 0,pertenencia: "",tipo: "Superficie"});//Si el bucle termina y no encuentra coincidencia, se ejecuta esta linea
 }
+export function obtenerFacturacion(tarifa:number, pesoNeto:number):number{ /*Calcula la facturación de cada registro multiplicando la tarifa por el peso neto*/
+    return(tarifa * pesoNeto)
+}
